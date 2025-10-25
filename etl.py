@@ -40,8 +40,7 @@ def exportar_vendas_calculadas(formato_saida: list[str], df_calculado : pd.DataF
         df_calculado.to_parquet('resultado.parquet', index=False) 
 
 
-if __name__ == '__main__':
-    pasta_json = 'data'
+def pipeline_calculo_kpi_vendas(pasta_json: str, formato_saida: list[str]) -> None:
     df_base = extrair_dados_json(diretorio_json=pasta_json)
     df_vendas = calcular_valor_total_vendas(df_vendas=df_base)
-    exportar_vendas_calculadas(formato_saida=['csv','parquet'], df_calculado=df_vendas)
+    exportar_vendas_calculadas(formato_saida=formato_saida, df_calculado=df_vendas)
